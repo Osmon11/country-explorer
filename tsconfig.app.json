@@ -14,6 +14,20 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "paths": {
+      "@/app": ["./src/app/index.ts"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/widgets": ["./src/widgets/index.ts"],
+      "@/features": ["./src/features/index.ts"],
+      "@/entities": ["./src/entities/index.ts"],
+      "@/shared/ui": ["./src/shared/ui/index.ts"],
+      "@/shared/config": [
+        "./src/shared/config/index.ts"
+      ],
+      "@/shared/types": [
+        "./src/shared/types/index.ts"
+      ]
+    },
 
     /* Linting */
     "strict": true,

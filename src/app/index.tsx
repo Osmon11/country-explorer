@@ -1,7 +1,20 @@
-import "./index.scss";
+import { Main } from "@/pages/Main";
+import "./index.css";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
-  return <h1>"Vite + React"</h1>;
+  return (
+    // Provide the client to your App
+    <QueryClientProvider client={queryClient}>
+      <Main />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
