@@ -1,3 +1,7 @@
+import {
+  Link,
+  type LinkProps,
+} from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 export interface CardProps {
@@ -5,6 +9,7 @@ export interface CardProps {
   alt?: string;
   title: string;
   children?: ReactNode;
+  linkProps?: LinkProps;
 }
 
 export function Card({
@@ -12,9 +17,14 @@ export function Card({
   alt,
   title,
   children,
+  linkProps,
 }: CardProps) {
+  const Element = linkProps ? Link : "div";
   return (
-    <div className="block max-w-2xl p-4 cursor-pointer bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <Element
+      className="block max-w-2xl p-4 cursor-pointer bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      {...linkProps}
+    >
       <img
         className="w-full h-[200px] md:h-[150px] rounded-lg object-cover object-center mb-4"
         src={image}
@@ -24,6 +34,6 @@ export function Card({
         {title}
       </h5>
       {children}
-    </div>
+    </Element>
   );
 }

@@ -3,6 +3,7 @@ import { Card } from "@/shared/ui";
 
 type CountryCardProps = Pick<
   Country,
+  | "cca2"
   | "flags"
   | "name"
   | "capital"
@@ -11,6 +12,7 @@ type CountryCardProps = Pick<
 >;
 
 export function CountryCard({
+  cca2,
   flags,
   name,
   capital,
@@ -34,10 +36,14 @@ export function CountryCard({
       title={name.common}
       image={flags.svg}
       alt={flags.alt}
+      linkProps={{
+        to: "/$cca2",
+        params: { cca2 },
+      }}
     >
       {fieldsToRender.map((item) => (
         <p
-          className="text-base font-normal text-gray-700 dark:text-gray-400"
+          className="text-base font-normal text-gray-900 dark:text-white mb-2"
           key={`${name.common}-${item.value}`}
         >
           <span className="font-bold">

@@ -50,10 +50,10 @@ export interface CoatOfArms {
 }
 
 export interface Currencies {
-  ERN: Ern;
+  [key: string]: Currency;
 }
 
-export interface Ern {
+export interface Currency {
   symbol: string;
   name: string;
 }

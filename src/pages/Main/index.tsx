@@ -1,6 +1,6 @@
 import { CountryExplorer } from "@/widgets";
 
-export function Main() {
+export default function Main() {
   return (
     <>
       <CountryExplorer />

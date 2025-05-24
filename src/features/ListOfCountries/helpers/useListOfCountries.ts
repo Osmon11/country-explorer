@@ -1,5 +1,6 @@
 import { appAxios } from "@/shared/config";
 import type { ListOfCountries } from "../types/countriesStore";
+import { useQuery } from "@tanstack/react-query";
 
 export function fetchListOfCountries() {
   return appAxios
@@ -9,4 +10,11 @@ export function fetchListOfCountries() {
     .then((res) =>
       Array.isArray(res.data) ? res.data : []
     );
+}
+
+export function useListOfCountries() {
+  return useQuery<ListOfCountries>({
+    queryKey: ["countries"],
+    queryFn: fetchListOfCountries,
+  });
 }

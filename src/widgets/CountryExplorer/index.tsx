@@ -1,9 +1,10 @@
 import { ListOfCountries } from "@/features";
+import { Container } from "@/shared/ui";
 
 export function CountryExplorer() {
   return (
-    <main className="max-w-7xl m-auto p-8">
+    <Container>
       <ListOfCountries />
-    </main>
+    </Container>
   );
 }
