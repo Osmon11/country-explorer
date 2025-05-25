@@ -1,2 +1,57 @@
 @import "tailwindcss";
 @import "tailwindcss/preflight.css" layer(base);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.theme-controller {
+  cursor: pointer;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  place-content: center;
+  display: inline-grid;
+  position: relative;
+}
+
+.theme-controller > * {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transition-property: transform, rotate, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(
+    0,
+    0,
+    0.2,
+    1
+  );
+}
+
+.theme-controller input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+}
+
+.theme-controller .on {
+  rotate: 45deg;
+  opacity: 0;
+}
+
+.theme-controller
+  input:is(:checked, :indeterminate)
+  ~ .off {
+  rotate: -45deg;
+  opacity: 0;
+}
+
+.theme-controller
+  input:is(:checked, :indeterminate)
+  ~ .on {
+  rotate: none;
+}
+
+.theme-controller input:checked ~ .on {
+  opacity: 1;
+  backface-visibility: visible;
+}

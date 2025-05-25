@@ -5,9 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/weAre.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Тестовое задание: “Исследователь стран”</title>
+    <script>
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.theme === "dark" ||
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
+    </script>
   </head>
   <body>
-    <div id="root" class="min-h-screen bg-white dark:bg-gray-800"></div>
+    <div id="root" class="min-h-screen bg-white dark:bg-gray-900"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
