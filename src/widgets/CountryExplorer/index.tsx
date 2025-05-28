@@ -77,7 +77,7 @@ export function CountryExplorer() {
   }
   return (
     <Container main>
-      <div className="flex justify-between gap-4 mb-8">
+      <div className="flex justify-between gap-4 flex-wrap-reverse sm:flex-nowrap mb-8">
         <SortCountries
           onChange={onSortingChange}
         />
