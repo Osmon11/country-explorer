@@ -1,7 +1,10 @@
-import { Container } from "@/shared/ui";
 import { getRouteApi } from "@tanstack/react-router";
-import { useCountry } from "./hooks";
+
 import { RequestProcessor } from "@/entities";
+
+import { Container } from "@/shared/ui";
+
+import { useCountry } from "./hooks/useCountry";
 import { CountrySummary } from "./ui";
 
 const route = getRouteApi("/$cca2");
@@ -24,7 +27,7 @@ export function CountryInformation() {
           error
             ? {
                 title: error.name,
-                descriptions: error.message,
+                description: error.message,
               }
             : undefined
         }

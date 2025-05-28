@@ -1,8 +1,10 @@
-import { DropdownMenu } from "@/shared/ui";
-import { regionsWithSubregions } from "../../config/regionsWithSubregions";
-import type { ListOfCountriesParams } from "@/shared/types";
-import { Popover } from "react-tiny-popover";
 import { useState } from "react";
+import { Popover } from "react-tiny-popover";
+
+import type { ListOfCountriesParams } from "@/shared/types";
+import { DropdownMenu } from "@/shared/ui";
+
+import { regionsWithSubregions } from "../../config/regionsWithSubregions";
 
 interface RegionSelectorProps {
   onSelect: (value: Value) => void;
@@ -22,10 +24,10 @@ export function RegionSelector({
     useState<string>();
 
   function selectHandler(
-    type: "region" | "subregion"
+    type: "region" | "subregion",
   ) {
     return function (
-      item: (typeof regionsWithSubregions)[0]
+      item: (typeof regionsWithSubregions)[0],
     ) {
       const result: Value = {
         region: undefined,
@@ -81,7 +83,7 @@ export function RegionSelector({
                   <DropdownMenu
                     list={item.subList}
                     onSelect={selectHandler(
-                      "subregion"
+                      "subregion",
                     )}
                   />
                 }

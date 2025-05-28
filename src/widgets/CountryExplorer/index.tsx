@@ -1,24 +1,28 @@
 import {
-  ListOfCountries,
-  SearchCountries,
-  SortCountries,
-} from "@/features";
-import { Container } from "@/shared/ui";
-import { useStoreOfCountries } from "./model/useStoreOfCountries";
-import { useQueryOfCountries } from "./hooks/useQueryOfCountries";
-import {
   useEffect,
   useState,
   useTransition,
 } from "react";
+import { flushSync } from "react-dom";
+
+import {
+  ListOfCountries,
+  SearchCountries,
+  SortCountries,
+} from "@/features";
+
 import { RequestProcessor } from "@/entities";
+
 import type {
   ListOfCountriesParams,
   SortOptions,
 } from "@/shared/types";
+import { Container } from "@/shared/ui";
+
 import { useErrorMessage } from "./hooks/useErrorMessage";
+import { useQueryOfCountries } from "./hooks/useQueryOfCountries";
 import { useSortedListOfCountries } from "./hooks/useSortedListOfCountries";
-import { flushSync } from "react-dom";
+import { useStoreOfCountries } from "./model/useStoreOfCountries";
 
 export function CountryExplorer() {
   const [params, setParams] =
@@ -28,10 +32,10 @@ export function CountryExplorer() {
   const [direction, setDirection] =
     useState<SortOptions["name"]>();
   const listOfCountries = useStoreOfCountries(
-    (state) => state.listOfCountries
+    (state) => state.listOfCountries,
   );
   const setListOfCountries = useStoreOfCountries(
-    (state) => state.setListOfCountries
+    (state) => state.setListOfCountries,
   );
   const {
     isFetching,
@@ -43,7 +47,7 @@ export function CountryExplorer() {
   const sortedData = useSortedListOfCountries(
     sortBy,
     direction,
-    data
+    data,
   );
   const errorMessage = useErrorMessage(error);
   const [isPending, startTransition] =
@@ -57,14 +61,14 @@ export function CountryExplorer() {
 
   function onSortingChange(
     sortBy: keyof SortOptions,
-    direction: SortOptions["name"]
+    direction: SortOptions["name"],
   ) {
     setSortBy(sortBy);
     setDirection(direction);
   }
 
   function onParamsChange(
-    params: ListOfCountriesParams
+    params: ListOfCountriesParams,
   ) {
     flushSync(() => {
       setParams(params);

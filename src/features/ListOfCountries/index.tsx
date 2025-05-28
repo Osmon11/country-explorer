@@ -1,4 +1,5 @@
 import { CountryCard } from "@/entities";
+
 import type { ListOfCountries as TypeListOfCountries } from "@/shared/types";
 
 interface ListOfCountriesProps {

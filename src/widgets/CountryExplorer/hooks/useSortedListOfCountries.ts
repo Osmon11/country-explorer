@@ -1,13 +1,14 @@
+import { useMemo } from "react";
+
 import type {
   ListOfCountries,
   SortOptions,
 } from "@/shared/types";
-import { useMemo } from "react";
 
 export function useSortedListOfCountries(
   sortBy: keyof SortOptions,
   direction: SortOptions["name"],
-  data: ListOfCountries | undefined
+  data: ListOfCountries | undefined,
 ) {
   const sortedData = useMemo(() => {
     if (Array.isArray(data)) {

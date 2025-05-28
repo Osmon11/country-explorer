@@ -1,7 +1,7 @@
 import type { AppAxiosError } from "@/shared/types";
 
 export function useErrorMessage(
-  error: AppAxiosError | null
+  error: AppAxiosError | null,
 ) {
   if (error === null) return undefined;
   let result:

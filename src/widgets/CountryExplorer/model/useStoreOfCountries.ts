@@ -1,10 +1,11 @@
-import type { ListOfCountries } from "@/shared/types";
 import { create } from "zustand";
+
+import type { ListOfCountries } from "@/shared/types";
 
 export interface CountriesStore {
   listOfCountries: ListOfCountries;
   setListOfCountries: (
-    payload: ListOfCountries
+    payload: ListOfCountries,
   ) => void;
 }
 

@@ -1,13 +1,14 @@
 import type { ListOfCountriesParams } from "@/shared/types";
+
 import {
-  SearchByName,
   RegionSelector,
+  SearchByName,
 } from "./ui";
 
 interface SearchCountriesProps {
   params: ListOfCountriesParams;
   onParamsChange: (
-    params: ListOfCountriesParams
+    params: ListOfCountriesParams,
   ) => void;
 }
 

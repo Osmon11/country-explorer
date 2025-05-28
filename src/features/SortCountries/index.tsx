@@ -1,10 +1,11 @@
+import { type JSX, useState } from "react";
+
 import type { SortOptions } from "@/shared/types";
-import { useState, type JSX } from "react";
 
 interface SortCountriesProps {
   onChange: (
     sortBy: keyof SortOptions,
-    direction: SortOptions["name"]
+    direction: SortOptions["name"],
   ) => void;
 }
 
@@ -23,7 +24,7 @@ export function SortCountries({
 
   function onChangeHandler(
     key: keyof SortOptions,
-    state: SortState | undefined
+    state: SortState | undefined,
   ) {
     if (state) {
       const newState = {
@@ -51,7 +52,7 @@ export function SortCountries({
           onChangeHandler(
             "name",
             // Get the next value based on the current one.
-            mapState.get(name.value)
+            mapState.get(name.value),
           )
         }
       >
@@ -65,7 +66,7 @@ export function SortCountries({
           onChangeHandler(
             "population",
             // Get the next value based on the current one.
-            mapState.get(population.value)
+            mapState.get(population.value),
           )
         }
       >

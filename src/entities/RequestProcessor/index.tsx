@@ -1,9 +1,10 @@
+import { type ReactNode, Suspense } from "react";
+
 import {
   Alert,
-  Spinner,
   type AlertProps,
+  Spinner,
 } from "@/shared/ui";
-import { Suspense, type ReactNode } from "react";
 
 interface RequestProcessorProps {
   isFetching: boolean;

@@ -1,6 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+
 import { appAxios } from "@/shared/config";
 import type { Country } from "@/shared/types";
-import { useQuery } from "@tanstack/react-query";
 
 export function fetchCountry(code: string) {
   return appAxios
@@ -8,7 +9,7 @@ export function fetchCountry(code: string) {
     .then((res) =>
       Array.isArray(res.data)
         ? res.data[0]
-        : undefined
+        : undefined,
     );
 }
 

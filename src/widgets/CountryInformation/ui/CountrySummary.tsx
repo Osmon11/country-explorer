@@ -37,7 +37,7 @@ export function CountrySummary({
     {
       key: "Language(s)",
       value: Object.values(
-        country.languages
+        country.languages,
       ).join(", "),
     },
     {

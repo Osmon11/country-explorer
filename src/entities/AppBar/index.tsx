@@ -1,12 +1,13 @@
 import {
+  useCanGoBack,
+  useRouter,
+} from "@tanstack/react-router";
+
+import {
   Button,
   Container,
   ThemeController,
 } from "@/shared/ui";
-import {
-  useCanGoBack,
-  useRouter,
-} from "@tanstack/react-router";
 
 interface AppBarProps {
   backBtn?: boolean;

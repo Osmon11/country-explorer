@@ -3,19 +3,19 @@ import { useState } from "react";
 export function ThemeController() {
   const [value, setValue] = useState(
     !document.documentElement.className.includes(
-      "dark"
-    )
+      "dark",
+    ),
   );
 
   function toggleTheme(
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) {
     localStorage.theme = event.currentTarget
       .checked
       ? "light"
       : "dark";
     document.documentElement.classList.toggle(
-      "dark"
+      "dark",
     );
     setValue(!value);
   }
