@@ -1,4 +1,4 @@
-interface AlertProps {
+export interface AlertProps {
   title: string;
   description?: string;
 }
@@ -24,8 +24,8 @@ export function Alert({
       <span className="sr-only">Info</span>
       <div>
         <span className="font-medium">
-          {title}
-        </span>{" "}
+          {`${title}${description ? ": " : " "}`}
+        </span>
         {description}
       </div>
     </div>

@@ -31,16 +31,20 @@ export function AppBar({ backBtn }: AppBarProps) {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
             </svg>
             Back
           </Button>
         ) : (
-          <a href="https://www.linkedin.com/in/osmon11/">
+          <a
+            className="rounded-full focus:ring-6 focus:ring-gray-100 dark:focus:ring-gray-700"
+            href="https://www.linkedin.com/in/osmon11/"
+            target="_blank"
+          >
             <img
               className="size-12 rounded-full"
               src="/weAre.svg"

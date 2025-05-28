@@ -1,24 +1,32 @@
-import { Alert, Spinner } from "@/shared/ui";
+import {
+  Alert,
+  Spinner,
+  type AlertProps,
+} from "@/shared/ui";
 import type { ReactNode } from "react";
 
 interface RequestProcessorProps {
-  isPending: boolean;
+  isFetching: boolean;
   isError: boolean;
-  error?: { title: string; descriptions: string };
+  error?: AlertProps;
   children: ReactNode;
 }
 
 export function RequestProcessor({
-  isPending,
+  isFetching,
   isError,
   error,
   children,
 }: RequestProcessorProps) {
   return (
     <>
-      {isError && error && <Alert {...error} />}
-      {isPending && <Spinner />}
-      {children}
+      {isFetching ? (
+        <Spinner />
+      ) : isError ? (
+        error && <Alert {...error} />
+      ) : (
+        children
+      )}
     </>
   );
 }

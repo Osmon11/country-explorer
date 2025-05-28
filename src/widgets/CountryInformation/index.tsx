@@ -1,6 +1,6 @@
 import { Container } from "@/shared/ui";
 import { getRouteApi } from "@tanstack/react-router";
-import { useCountry } from "./helpers";
+import { useCountry } from "./hooks";
 import { RequestProcessor } from "@/entities";
 import { CountrySummary } from "./ui";
 
@@ -9,16 +9,16 @@ const route = getRouteApi("/$cca2");
 export function CountryInformation() {
   const { cca2 } = route.useParams();
   const {
-    isPending,
+    isFetching,
     isError,
     data: country,
     error,
   } = useCountry(cca2);
 
   return (
-    <Container>
+    <Container main>
       <RequestProcessor
-        isPending={isPending}
+        isFetching={isFetching}
         isError={isError}
         error={
           error
@@ -30,7 +30,7 @@ export function CountryInformation() {
         }
       >
         {country !== undefined && (
-          <div className="flex flex-wrap-reverse md:flex-nowrap gap-8">
+          <div className="flex flex-wrap-reverse md:flex-nowrap gap-4">
             <div className="w-full">
               <h1 className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
                 {country.name.common}

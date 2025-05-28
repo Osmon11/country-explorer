@@ -107,3 +107,19 @@ export interface PostalCode {
   format: null;
   regex: null;
 }
+
+export type ListOfCountries = Pick<
+  Country,
+  | "name"
+  | "capital"
+  | "region"
+  | "population"
+  | "flags"
+  | "cca2"
+>[];
+
+export interface ListOfCountriesParams {
+  name?: string;
+  region?: string;
+  subregion?: string;
+}

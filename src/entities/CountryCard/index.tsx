@@ -27,7 +27,7 @@ export function CountryCard({
     { key: "Capital", value: capitalName },
     { key: "Region", value: region },
     {
-      key: "Capital",
+      key: "Population",
       value: population.toLocaleString(),
     },
   ];
