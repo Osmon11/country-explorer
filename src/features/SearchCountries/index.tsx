@@ -3,44 +3,33 @@ import {
   SearchByName,
   RegionSelector,
 } from "./ui";
-import { useState } from "react";
 
 interface SearchCountriesProps {
-  onSubmit: (
+  params: ListOfCountriesParams;
+  onParamsChange: (
     params: ListOfCountriesParams
   ) => void;
 }
 
 export function SearchCountries({
-  onSubmit,
+  params,
+  onParamsChange,
 }: SearchCountriesProps) {
-  const [params, setParams] =
-    useState<ListOfCountriesParams>({});
-
-  function onSearch(name: string) {
-    if (
-      name ||
-      params.region ||
-      params.subregion
-    ) {
-      onSubmit({
-        name,
-        region: params.region,
-        subregion: params.subregion,
-      });
-    }
-  }
   return (
     <div className="w-full max-w-sm flex">
       <RegionSelector
         onSelect={(value) => {
-          setParams({
+          onParamsChange({
             name: params.name,
             ...value,
           });
         }}
       />
-      <SearchByName onSearch={onSearch} />
+      <SearchByName
+        onSearch={(name) =>
+          onParamsChange({ ...params, name })
+        }
+      />
     </div>
   );
 }

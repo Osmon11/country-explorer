@@ -1,21 +1,38 @@
 import {
   ListOfCountries,
   SearchCountries,
+  SortCountries,
 } from "@/features";
 import { Container } from "@/shared/ui";
 import { useStoreOfCountries } from "./model/useStoreOfCountries";
 import { useQueryOfCountries } from "./hooks/useQueryOfCountries";
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import { RequestProcessor } from "@/entities";
-import type { ListOfCountriesParams } from "@/shared/types";
-import { flushSync } from "react-dom";
+import type {
+  ListOfCountriesParams,
+  SortOptions,
+} from "@/shared/types";
 import { useErrorMessage } from "./hooks/useErrorMessage";
+import { useSortedListOfCountries } from "./hooks/useSortedListOfCountries";
+import { flushSync } from "react-dom";
 
 export function CountryExplorer() {
   const [params, setParams] =
-    useState<ListOfCountriesParams>();
-  const { listOfCountries, setListOfCountries } =
-    useStoreOfCountries();
+    useState<ListOfCountriesParams>({});
+  const [sortBy, setSortBy] =
+    useState<keyof SortOptions>("name");
+  const [direction, setDirection] =
+    useState<SortOptions["name"]>();
+  const listOfCountries = useStoreOfCountries(
+    (state) => state.listOfCountries
+  );
+  const setListOfCountries = useStoreOfCountries(
+    (state) => state.setListOfCountries
+  );
   const {
     isFetching,
     isError,
@@ -23,29 +40,50 @@ export function CountryExplorer() {
     error,
     refetch,
   } = useQueryOfCountries(params);
+  const sortedData = useSortedListOfCountries(
+    sortBy,
+    direction,
+    data
+  );
   const errorMessage = useErrorMessage(error);
+  const [isPending, startTransition] =
+    useTransition();
 
   useEffect(() => {
-    if (Array.isArray(data)) {
-      setListOfCountries(data);
-    }
-  }, [data, setListOfCountries]);
+    startTransition(() => {
+      setListOfCountries(sortedData);
+    });
+  }, [sortedData, setListOfCountries]);
 
-  function onSubmitHandler(
+  function onSortingChange(
+    sortBy: keyof SortOptions,
+    direction: SortOptions["name"]
+  ) {
+    setSortBy(sortBy);
+    setDirection(direction);
+  }
+
+  function onParamsChange(
     params: ListOfCountriesParams
   ) {
-    flushSync(() => setParams(params));
+    flushSync(() => {
+      setParams(params);
+    });
     refetch();
   }
   return (
     <Container main>
       <div className="flex justify-between gap-4 mb-8">
+        <SortCountries
+          onChange={onSortingChange}
+        />
         <SearchCountries
-          onSubmit={onSubmitHandler}
+          params={params}
+          onParamsChange={onParamsChange}
         />
       </div>
       <RequestProcessor
-        isFetching={isFetching}
+        isFetching={isFetching || isPending}
         isError={isError}
         error={errorMessage}
       >

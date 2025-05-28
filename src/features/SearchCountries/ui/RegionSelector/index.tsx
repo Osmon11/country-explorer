@@ -70,6 +70,7 @@ export function RegionSelector({
                   currentSubmenu === item.key
                 }
                 padding={8}
+                align="start"
                 positions={[
                   "right",
                   "left",

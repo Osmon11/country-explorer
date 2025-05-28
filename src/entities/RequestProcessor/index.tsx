@@ -3,7 +3,7 @@ import {
   Spinner,
   type AlertProps,
 } from "@/shared/ui";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 interface RequestProcessorProps {
   isFetching: boolean;
@@ -19,7 +19,7 @@ export function RequestProcessor({
   children,
 }: RequestProcessorProps) {
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       {isFetching ? (
         <Spinner />
       ) : isError ? (
@@ -27,6 +27,6 @@ export function RequestProcessor({
       ) : (
         children
       )}
-    </>
+    </Suspense>
   );
 }

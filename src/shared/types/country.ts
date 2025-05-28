@@ -123,3 +123,8 @@ export interface ListOfCountriesParams {
   region?: string;
   subregion?: string;
 }
+
+export interface SortOptions {
+  name?: "asc" | "desc";
+  population?: "asc" | "desc";
+}
